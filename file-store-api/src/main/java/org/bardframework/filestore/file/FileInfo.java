@@ -38,7 +38,7 @@ public interface FileInfo {
     String getContentType();
 
     /**
-     * Return whether the  file is empty
+     * @return true file is empty
      */
     boolean isEmpty();
 

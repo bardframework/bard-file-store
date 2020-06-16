@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by v.zafari on 1/25/2016.
  *
- * @thread-safe
+ * thread-safe
  */
 public abstract class RedisFileHolder extends UserFileHolderAbstract<FileInfo> {
 
