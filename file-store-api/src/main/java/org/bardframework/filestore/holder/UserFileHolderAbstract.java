@@ -33,7 +33,7 @@ public abstract class UserFileHolderAbstract<F> implements UserFileHolder<F> {
 
     @Override
     public F get(String key, String userId) {
-        AssertionUtils.hasLength(key, "null or empty key not acceptable");
+        AssertionUtils.hasText(key, "null or empty key not acceptable");
         AssertionUtils.notNull(userId, "null userId not acceptable");
         return this.onGet(key, userId);
     }
@@ -41,7 +41,7 @@ public abstract class UserFileHolderAbstract<F> implements UserFileHolder<F> {
     public abstract F onGet(String key, String userId);
 
     public boolean remove(String key, String userId) {
-        AssertionUtils.hasLength(key, "null or empty key not acceptable");
+        AssertionUtils.hasText(key, "null or empty key not acceptable");
         AssertionUtils.notNull(userId, "null userId not acceptable");
         return this.onRemove(key, userId);
     }

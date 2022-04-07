@@ -2,7 +2,7 @@ package org.bardframework.filestore;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.bardframework.commons.utils.FileUtils;
+import org.apache.commons.io.FileUtils;
 import org.bardframework.filestore.holder.UserFileHolderAbstract;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by v.zafari on 1/25/2016.
- *
+ * <p>
  * thread-safe
  */
 public abstract class FileHolderFs<F> extends UserFileHolderAbstract<F> {

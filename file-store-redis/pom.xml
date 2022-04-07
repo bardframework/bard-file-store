@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.bardframework.filestore</groupId>
         <artifactId>file-store</artifactId>
-        <version>0.4</version>
+        <version>1.1.19</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -21,16 +21,6 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
 
