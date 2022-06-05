@@ -21,6 +21,7 @@ public abstract class UserFileHolderAbstract<F> implements UserFileHolder<F> {
         this.ageUnit = ageUnit;
     }
 
+    @Override
     public String save(F file, String userId) {
         AssertionUtils.notNull(userId, "null userId not acceptable");
         AssertionUtils.notNull(file, "null data not acceptable");
@@ -40,6 +41,7 @@ public abstract class UserFileHolderAbstract<F> implements UserFileHolder<F> {
 
     public abstract F onGet(String key, String userId);
 
+    @Override
     public boolean remove(String key, String userId) {
         AssertionUtils.hasText(key, "null or empty key not acceptable");
         AssertionUtils.notNull(userId, "null userId not acceptable");

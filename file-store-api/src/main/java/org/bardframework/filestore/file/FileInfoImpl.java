@@ -42,6 +42,7 @@ public class FileInfoImpl implements FileInfo {
         this.createTime = LocalDateTime.now();
     }
 
+    @Override
     public byte[] getBytes() {
         return bytes;
     }
@@ -56,6 +57,7 @@ public class FileInfoImpl implements FileInfo {
         return originalName;
     }
 
+    @Override
     public String getContentType() {
         return contentType;
     }
@@ -72,6 +74,7 @@ public class FileInfoImpl implements FileInfo {
         return bytes.length;
     }
 
+    @Override
     public LocalDateTime getCreateTime() {
         return createTime;
     }
