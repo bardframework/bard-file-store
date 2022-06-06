@@ -16,9 +16,9 @@ public class FetchFileFromCacheDeserializer<U> extends JsonDeserializer<Object> 
 
     protected static final Logger LOGGER = LoggerFactory.getLogger(FetchFileFromCacheDeserializer.class);
 
-    private final UserFileHolder<FileInfo> fileHolder;
+    private final UserFileHolder<FileInfo, ?> fileHolder;
 
-    public FetchFileFromCacheDeserializer(UserFileHolder<FileInfo> fileHolder) {
+    public FetchFileFromCacheDeserializer(UserFileHolder<FileInfo, ?> fileHolder) {
         this.fileHolder = fileHolder;
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     }
@@ -26,10 +26,10 @@ public class FetchFileFromCacheDeserializer<U> extends JsonDeserializer<Object> 
     @Override
     public Object deserialize(JsonParser parser, DeserializationContext context) {
         try {
-            ((CacheFileDto) parser.getCurrentValue()).setFile(fileHolder.get(parser.getValueAsString(), null));
+            ((CacheFile) parser.getCurrentValue()).setFile(fileHolder.get(parser.getValueAsString(), null));
             return parser.getValueAsString();
         } catch (Exception e) {
-            LOGGER.error("error fetching data from cache and set to object, annotated field for deserialize with '{}' must be within '{}' class.", getClass(), CacheFileDto.class);
+            LOGGER.error("error fetching data from cache and set to object, annotated field for deserialize with '{}' must be within '{}' class.", getClass(), CacheFile.class);
             throw new IllegalStateException("error fetching data from cache and set to object", e);
         }
     }

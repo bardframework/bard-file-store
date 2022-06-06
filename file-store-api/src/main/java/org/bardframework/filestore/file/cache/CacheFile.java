@@ -6,13 +6,13 @@ import org.bardframework.filestore.file.FileInfo;
 /**
  * @author v.zafari@chmail.ir
  */
-public class CacheFileDto {
+public class CacheFile {
 
     private FileInfo file;
     @JsonDeserialize(using = FetchFileFromCacheDeserializer.class)
     private String fileId;
 
-    public CacheFileDto() {
+    public CacheFile() {
     }
 
     public FileInfo getFile() {

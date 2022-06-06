@@ -47,7 +47,7 @@ public interface FileInfo {
      *
      * @return the size of the file, or 0 if empty
      */
-    long getSize();
+    int getSize();
 
     /**
      * Return the contents of the file as an array of bytes.

@@ -3,6 +3,7 @@ package org.bardframework.filestore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
+import org.bardframework.filestore.file.FileInfo;
 import org.bardframework.filestore.holder.UserFileHolderAbstract;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,33 +11,31 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by v.zafari on 1/25/2016.
  * <p>
  * thread-safe
  */
-public abstract class FileHolderFs<F> extends UserFileHolderAbstract<F> {
+public abstract class FileHolderFs<F extends FileInfo, U> extends UserFileHolderAbstract<F, U> {
 
     protected final String basePath;
     @Autowired
     protected ObjectMapper objectMapper;
 
-    public FileHolderFs(String basePath, long fileAge, TimeUnit ageUnit) {
-        super(fileAge, ageUnit);
+    public FileHolderFs(String basePath) {
         this.basePath = basePath;
     }
 
     @Override
-    public void onSave(String key, F data, String userId) {
+    public void onSave(String key, F data, U user) {
         String content;
         try {
             content = objectMapper.writeValueAsString(data);
         } catch (JsonProcessingException e) {
             throw new IllegalStateException("error serializing file content to json string: " + data, e);
         }
-        Path filePath = this.getFilePath(key, userId);
+        Path filePath = this.getFilePath(key, user);
         try {
             FileUtils.writeStringToFile(filePath.toFile(), content, StandardCharsets.UTF_8);
         } catch (IOException e) {
@@ -45,8 +44,8 @@ public abstract class FileHolderFs<F> extends UserFileHolderAbstract<F> {
     }
 
     @Override
-    public F onGet(String key, String userId) {
-        Path filePath = this.getFilePath(key, userId);
+    public F onGet(String key, U user) {
+        Path filePath = this.getFilePath(key, user);
         String content;
         try {
             content = FileUtils.readFileToString(filePath.toFile(), StandardCharsets.UTF_8);
@@ -60,13 +59,13 @@ public abstract class FileHolderFs<F> extends UserFileHolderAbstract<F> {
         }
     }
 
-    protected Path getFilePath(String key, String userId) {
-        return Paths.get(basePath, userId, key);
+    protected Path getFilePath(String key, U user) {
+        return Paths.get(basePath, user.toString(), key);
     }
 
     @Override
-    public boolean onRemove(String key, String userId) {
-        Path filePath = this.getFilePath(key, userId);
+    public boolean onRemove(String key, U user) {
+        Path filePath = this.getFilePath(key, user);
         return FileUtils.deleteQuietly(filePath.toFile());
     }
 

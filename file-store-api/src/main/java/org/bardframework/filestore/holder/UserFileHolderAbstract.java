@@ -1,53 +1,46 @@
 package org.bardframework.filestore.holder;
 
 import org.bardframework.commons.utils.AssertionUtils;
+import org.bardframework.filestore.file.FileInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by v.zafari on 1/25/2016.
  */
-public abstract class UserFileHolderAbstract<F> implements UserFileHolder<F> {
+public abstract class UserFileHolderAbstract<F extends FileInfo, U> implements UserFileHolder<F, U> {
 
     protected final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-    protected final long fileAge;
-    protected final TimeUnit ageUnit;
-
-    protected UserFileHolderAbstract(long fileAge, TimeUnit ageUnit) {
-        this.fileAge = fileAge;
-        this.ageUnit = ageUnit;
-    }
 
     @Override
-    public String save(F file, String userId) {
-        AssertionUtils.notNull(userId, "null userId not acceptable");
+    public String save(F file, U user) {
+        AssertionUtils.notNull(user, "null user not acceptable");
         AssertionUtils.notNull(file, "null data not acceptable");
         String identifier = UUID.randomUUID().toString();
-        this.onSave(identifier, file, userId);
+        this.onSave(identifier, file, user);
         return identifier;
     }
 
-    public abstract void onSave(String key, F file, String userId);
+    public abstract void onSave(String key, F file, U user);
 
     @Override
-    public F get(String key, String userId) {
+    public F get(String key, U user) {
         AssertionUtils.hasText(key, "null or empty key not acceptable");
-        AssertionUtils.notNull(userId, "null userId not acceptable");
-        return this.onGet(key, userId);
+        AssertionUtils.notNull(user, "null user not acceptable");
+        return this.onGet(key, user);
     }
 
-    public abstract F onGet(String key, String userId);
+    public abstract F onGet(String key, U user);
 
     @Override
-    public boolean remove(String key, String userId) {
+    public boolean remove(String key, U user) {
         AssertionUtils.hasText(key, "null or empty key not acceptable");
-        AssertionUtils.notNull(userId, "null userId not acceptable");
-        return this.onRemove(key, userId);
+        AssertionUtils.notNull(user, "null user not acceptable");
+        return this.onRemove(key, user);
     }
 
-    public abstract boolean onRemove(String key, String userId);
+    public abstract boolean onRemove(String key, U user);
 
 }

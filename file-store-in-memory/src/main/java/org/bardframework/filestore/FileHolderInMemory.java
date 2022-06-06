@@ -13,41 +13,44 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by v.zafari on 1/25/2016.
- *
+ * <p>
  * thread-safe
  */
-public abstract class FileHolderInMemory<U> extends UserFileHolderAbstract<FileInfo> {
+public abstract class FileHolderInMemory<U> extends UserFileHolderAbstract<FileInfo, U> {
 
-    protected final ConcurrentMap<String, Map<String, FileInfo>> dataHolder;
+    protected final ConcurrentMap<U, Map<String, FileInfo>> dataHolder;
+    protected final long fileAge;
+    protected final TimeUnit ageUnit;
 
     public FileHolderInMemory(long fileAge, TimeUnit ageUnit) {
-        super(fileAge, ageUnit);
+        this.fileAge = fileAge;
+        this.ageUnit = ageUnit;
         this.dataHolder = new ConcurrentHashMap<>();
     }
 
     @Override
-    public void onSave(String key, FileInfo file, String userId) {
-        dataHolder.putIfAbsent(userId, new ConcurrentHashMap<>());
-        dataHolder.get(userId).put(key, file);
+    public void onSave(String key, FileInfo file, U user) {
+        dataHolder.putIfAbsent(user, new ConcurrentHashMap<>());
+        dataHolder.get(user).put(key, file);
     }
 
     @Override
-    public FileInfo onGet(String key, String userId) {
-        if (!dataHolder.containsKey(userId)) {
+    public FileInfo onGet(String key, U user) {
+        if (!dataHolder.containsKey(user)) {
             return null;
         }
-        return dataHolder.get(userId).get(key);
+        return dataHolder.get(user).get(key);
     }
 
     @Override
-    public boolean onRemove(String key, String userId) {
-        if (!dataHolder.containsKey(userId)) {
-            throw new IllegalStateException("user: " + userId + " not found.");
+    public boolean onRemove(String key, U user) {
+        if (!dataHolder.containsKey(user)) {
+            throw new IllegalStateException("user: " + user + " not found.");
         }
-        if (!dataHolder.get(userId).containsKey(key)) {
-            throw new IllegalStateException("file with id: " + key + " for user: " + userId + " not found.");
+        if (!dataHolder.get(user).containsKey(key)) {
+            throw new IllegalStateException("file with id: " + key + " for user: " + user + " not found.");
         }
-        return null != dataHolder.get(userId).remove(key);
+        return null != dataHolder.get(user).remove(key);
     }
 
     @Scheduled(cron = "${fileHolder.inMemory.cleaner.cron:0 */1 * * * *}")

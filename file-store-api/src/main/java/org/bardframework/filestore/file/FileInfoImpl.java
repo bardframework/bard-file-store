@@ -15,22 +15,20 @@ public class FileInfoImpl implements FileInfo {
     private String name;
     private String originalName;
     private String contentType;
-    private Enum<?> type;
     private LocalDateTime createTime;
 
     public FileInfoImpl() {
     }
 
     public FileInfoImpl(byte[] bytes, String contentType) {
-        this(bytes, null, contentType, null);
+        this(bytes, null, contentType);
     }
 
-    public FileInfoImpl(byte[] bytes, String name, String contentType, Enum<?> type) {
+    public FileInfoImpl(byte[] bytes, String name, String contentType) {
         this.bytes = bytes;
         this.name = name;
         this.originalName = name;
         this.contentType = contentType;
-        this.type = type;
         this.createTime = LocalDateTime.now();
     }
 
@@ -70,7 +68,7 @@ public class FileInfoImpl implements FileInfo {
 
     @JsonIgnore
     @Override
-    public long getSize() {
+    public int getSize() {
         return bytes.length;
     }
 
