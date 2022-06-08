@@ -37,7 +37,7 @@ public abstract class RedisFileHolder extends UserFileHolderAbstract<FileInfo, O
 
     @Override
     public boolean onRemove(String key, Object user) {
-        return redisTemplate.opsForValue().getOperations().delete(this.getFileKey(key, user));
+        return Boolean.TRUE.equals(redisTemplate.opsForValue().getOperations().delete(this.getFileKey(key, user)));
     }
 
     protected String getFileKey(String key, Object user) {
