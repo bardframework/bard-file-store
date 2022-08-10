@@ -26,7 +26,7 @@ public interface UserFileHolder<F extends FileInfo, U> {
     /**
      * remove data with given #key
      *
-     * @param key    key of data that must be retrieved
+     * @param key key of data that must be retrieved
      * @return <code>true</code> if data with given key removed, <code>false</code> otherwise
      * @throws IllegalArgumentException if user or key be null
      */
