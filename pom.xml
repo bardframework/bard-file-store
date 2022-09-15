@@ -12,7 +12,7 @@
 
     <groupId>org.bardframework.filestore</groupId>
     <artifactId>bard-file-store</artifactId>
-    <version>1.6.8</version>
+    <version>1.6.18</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -24,7 +24,7 @@
     </modules>
 
     <properties>
-        <bardframework.version>1.6.5</bardframework.version>
+        <bardframework.version>1.6.15</bardframework.version>
     </properties>
 
     <dependencyManagement>
