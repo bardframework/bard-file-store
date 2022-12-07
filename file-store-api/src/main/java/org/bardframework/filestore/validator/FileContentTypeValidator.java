@@ -5,7 +5,6 @@ import org.bardframework.filestore.file.FileInfo;
 import org.bardframework.validator.FieldValueHolder;
 import org.bardframework.validator.field.SingleFieldValidatorAbstract;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -33,6 +32,6 @@ public class FileContentTypeValidator extends SingleFieldValidatorAbstract<FileI
 
     @Override
     protected List<Object> getArgs(FieldValueHolder<FileInfo> fieldValue) {
-        return Arrays.asList(fieldValue.translateFieldName(messageSource, getLocale()), validContentTypes.toString());
+        return List.of(fieldValue.translateFieldName(messageSource, getLocale()), validContentTypes.toString());
     }
 }

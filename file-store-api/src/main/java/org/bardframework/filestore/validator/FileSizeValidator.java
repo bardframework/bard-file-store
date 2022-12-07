@@ -4,7 +4,6 @@ import org.bardframework.filestore.file.FileInfo;
 import org.bardframework.validator.FieldValueHolder;
 import org.bardframework.validator.field.SingleFieldValidatorAbstract;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -38,7 +37,7 @@ public class FileSizeValidator extends SingleFieldValidatorAbstract<FileInfo> {
 
     @Override
     protected List<Object> getArgs(FieldValueHolder<FileInfo> fieldValue) {
-        return Arrays.asList(fieldValue.translateFieldName(messageSource, getLocale()), null, null);
+        return List.of(fieldValue.translateFieldName(messageSource, getLocale()), null, null);
         //FIXME BARD
 //                UtilityMethods.translateByteToKMGT(minSize, messageSource, LocaleContextHolder.getLocale()),
 //                UtilityMethods.translateByteToKMGT(maxSize, messageSource, LocaleContextHolder.getLocale()));

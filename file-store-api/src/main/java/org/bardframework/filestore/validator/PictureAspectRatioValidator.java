@@ -8,7 +8,6 @@ import org.bardframework.validator.field.SingleFieldValidatorAbstract;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -51,6 +50,6 @@ public class PictureAspectRatioValidator extends SingleFieldValidatorAbstract<Fi
     @Override
     protected List<Object> getArgs(FieldValueHolder<FileInfo> fieldValue) {
         Fraction fraction = Fraction.getFraction(aspectRatio);
-        return Arrays.asList(fieldValue.translateFieldName(messageSource, getLocale()), fraction.getNumerator(), fraction.getDenominator());
+        return List.of(fieldValue.translateFieldName(messageSource, getLocale()), fraction.getNumerator(), fraction.getDenominator());
     }
 }
