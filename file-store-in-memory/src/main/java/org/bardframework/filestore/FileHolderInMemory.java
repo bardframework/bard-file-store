@@ -55,9 +55,9 @@ public abstract class FileHolderInMemory<U> extends UserFileHolderAbstract<FileI
 
     @Scheduled(cron = "${fileHolder.inMemory.cleaner.cron:0 */1 * * * *}")
     protected void clean() {
-        LOGGER.info("running file cleaner task");
+        log.info("running file cleaner task");
         if (dataHolder.isEmpty()) {
-            LOGGER.info("dataHolder has no entry.");
+            log.info("dataHolder has no entry.");
             return;
         }
         dataHolder.keySet().forEach(userId -> {
@@ -68,7 +68,7 @@ public abstract class FileHolderInMemory<U> extends UserFileHolderAbstract<FileI
                 userFileMap.keySet().forEach(key -> {
                     FileInfo fileInfo = userFileMap.get(key);
                     if (null == fileInfo || fileInfo.getCreateTime().until(LocalDateTime.now(), DateTimeUtils.toChronoUnit(ageUnit)) > fileAge) {
-                        LOGGER.info("cleaning aged file {}", fileInfo);
+                        log.info("cleaning aged file {}", fileInfo);
                         userFileMap.remove(key);
                     }
                 });

@@ -12,7 +12,7 @@ import java.util.UUID;
  */
 public abstract class UserFileHolderAbstract<F extends FileInfo, U> implements UserFileHolder<F, U> {
 
-    protected final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public String save(F file, U user) {

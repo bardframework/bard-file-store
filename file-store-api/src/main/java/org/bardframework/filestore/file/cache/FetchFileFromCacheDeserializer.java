@@ -14,7 +14,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
  */
 public class FetchFileFromCacheDeserializer<U> extends JsonDeserializer<Object> {
 
-    protected static final Logger LOGGER = LoggerFactory.getLogger(FetchFileFromCacheDeserializer.class);
+    protected static final Logger log = LoggerFactory.getLogger(FetchFileFromCacheDeserializer.class);
 
     private final UserFileHolder<FileInfo, ?> fileHolder;
 
@@ -29,7 +29,7 @@ public class FetchFileFromCacheDeserializer<U> extends JsonDeserializer<Object> 
             ((CacheFile) parser.getCurrentValue()).setFile(fileHolder.get(parser.getValueAsString(), null));
             return parser.getValueAsString();
         } catch (Exception e) {
-            LOGGER.error("error fetching data from cache and set to object, annotated field for deserialize with '{}' must be within '{}' class.", getClass(), CacheFile.class);
+            log.error("error fetching data from cache and set to object, annotated field for deserialize with '{}' must be within '{}' class.", getClass(), CacheFile.class);
             throw new IllegalStateException("error fetching data from cache and set to object", e);
         }
     }
