@@ -1,5 +1,6 @@
 package org.bardframework.filestore.validator;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.bardframework.commons.utils.AssertionUtils;
 import org.bardframework.filestore.file.FileInfo;
@@ -15,6 +16,7 @@ import java.util.List;
 /**
  * Created by v.zafari on 30/01/2016.
  */
+@Slf4j
 public class PictureAspectRatioValidator extends SingleFieldValidatorAbstract<FileInfo> {
 
     protected final double aspectRatio;

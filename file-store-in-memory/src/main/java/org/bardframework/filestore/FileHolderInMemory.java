@@ -1,28 +1,29 @@
 package org.bardframework.filestore;
 
-import org.bardframework.commons.utils.DateTimeUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.bardframework.filestore.file.FileInfo;
 import org.bardframework.filestore.holder.UserFileHolderAbstract;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by v.zafari on 1/25/2016.
  * <p>
  * thread-safe
  */
+@Slf4j
 public abstract class FileHolderInMemory<U> extends UserFileHolderAbstract<FileInfo, U> {
 
     protected final ConcurrentMap<U, Map<String, FileInfo>> dataHolder;
     protected final long fileAge;
-    protected final TimeUnit ageUnit;
+    protected final ChronoUnit ageUnit;
 
-    public FileHolderInMemory(long fileAge, TimeUnit ageUnit) {
+    public FileHolderInMemory(long fileAge, ChronoUnit ageUnit) {
         this.fileAge = fileAge;
         this.ageUnit = ageUnit;
         this.dataHolder = new ConcurrentHashMap<>();
@@ -67,7 +68,7 @@ public abstract class FileHolderInMemory<U> extends UserFileHolderAbstract<FileI
             } else {
                 userFileMap.keySet().forEach(key -> {
                     FileInfo fileInfo = userFileMap.get(key);
-                    if (null == fileInfo || fileInfo.getCreateTime().until(LocalDateTime.now(), DateTimeUtils.toChronoUnit(ageUnit)) > fileAge) {
+                    if (null == fileInfo || fileInfo.getCreateTime().until(LocalDateTime.now(), ageUnit) > fileAge) {
                         log.info("cleaning aged file {}", fileInfo);
                         userFileMap.remove(key);
                     }

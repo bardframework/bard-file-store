@@ -1,18 +1,16 @@
 package org.bardframework.filestore.holder;
 
+import lombok.extern.slf4j.Slf4j;
 import org.bardframework.commons.utils.AssertionUtils;
 import org.bardframework.filestore.file.FileInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
 /**
  * Created by v.zafari on 1/25/2016.
  */
+@Slf4j
 public abstract class UserFileHolderAbstract<F extends FileInfo, U> implements UserFileHolder<F, U> {
-
-    protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public String save(F file, U user) {

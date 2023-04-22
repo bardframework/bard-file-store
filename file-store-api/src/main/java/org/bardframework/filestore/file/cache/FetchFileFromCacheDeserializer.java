@@ -3,18 +3,16 @@ package org.bardframework.filestore.file.cache;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import lombok.extern.slf4j.Slf4j;
 import org.bardframework.filestore.file.FileInfo;
 import org.bardframework.filestore.holder.UserFileHolder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 /**
  * Created by Vahid Zafari on 10/28/2016.
  */
+@Slf4j
 public class FetchFileFromCacheDeserializer<U> extends JsonDeserializer<Object> {
-
-    protected static final Logger log = LoggerFactory.getLogger(FetchFileFromCacheDeserializer.class);
 
     private final UserFileHolder<FileInfo, ?> fileHolder;
 
