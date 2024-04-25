@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.bardframework.filestore</groupId>
         <artifactId>bard-file-store</artifactId>
-        <version>2.8.23</version>
+        <version>3.1.23</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
