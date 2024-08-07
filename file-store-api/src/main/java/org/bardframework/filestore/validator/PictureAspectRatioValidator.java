@@ -1,5 +1,6 @@
 package org.bardframework.filestore.validator;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.bardframework.commons.utils.AssertionUtils;
@@ -71,6 +72,7 @@ public class PictureAspectRatioValidator extends SingleFieldValidatorAbstract<Fi
      *
      * @since 2.0
      */
+    @Getter
     private static final class Fraction extends Number implements Comparable<Fraction> {
 
         /**
@@ -129,10 +131,12 @@ public class PictureAspectRatioValidator extends SingleFieldValidatorAbstract<Fi
         private static final long serialVersionUID = 65382027393090L;
         /**
          * The numerator number part of the fraction (the three in three sevenths).
+
          */
         private final int numerator;
         /**
          * The denominator number part of the fraction (the seven in three sevenths).
+
          */
         private final int denominator;
 
@@ -519,27 +523,6 @@ public class PictureAspectRatioValidator extends SingleFieldValidatorAbstract<Fi
                 throw new ArithmeticException("overflow: add");
             }
             return (int) s;
-        }
-
-        /**
-         * <p>Gets the numerator part of the fraction.</p>
-         *
-         * <p>This method may return a value greater than the denominator, an
-         * improper fraction, such as the seven in 7/4.</p>
-         *
-         * @return the numerator fraction part
-         */
-        public int getNumerator() {
-            return numerator;
-        }
-
-        /**
-         * <p>Gets the denominator part of the fraction.</p>
-         *
-         * @return the denominator fraction part
-         */
-        public int getDenominator() {
-            return denominator;
         }
 
         /**

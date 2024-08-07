@@ -1,11 +1,15 @@
 package org.bardframework.filestore.file.cache;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import lombok.Getter;
+import lombok.Setter;
 import org.bardframework.filestore.file.FileInfo;
 
 /**
  * @author v.zafari@chmail.ir
  */
+@Getter
+@Setter
 public class CacheFile {
 
     private FileInfo file;
@@ -13,22 +17,6 @@ public class CacheFile {
     private String fileId;
 
     public CacheFile() {
-    }
-
-    public FileInfo getFile() {
-        return file;
-    }
-
-    public void setFile(FileInfo file) {
-        this.file = file;
-    }
-
-    public String getFileId() {
-        return fileId;
-    }
-
-    public void setFileId(String fileId) {
-        this.fileId = fileId;
     }
 
     public byte[] getBytes() {
