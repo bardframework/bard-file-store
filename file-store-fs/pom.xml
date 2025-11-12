@@ -11,6 +11,7 @@
 
     <artifactId>file-store-fs</artifactId>
     <packaging>jar</packaging>
+    <name>Bard Framework - File Store - Filesystem</name>
 
     <dependencies>
         <dependency>

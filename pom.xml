@@ -14,6 +14,7 @@
     <artifactId>bard-file-store</artifactId>
     <version>4.5.3</version>
     <packaging>pom</packaging>
+    <name>Bard Framework - File Store</name>
 
     <modules>
         <module>file-store-api</module>

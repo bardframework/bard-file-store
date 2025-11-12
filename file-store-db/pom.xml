@@ -11,6 +11,7 @@
 
     <artifactId>file-store-db</artifactId>
     <packaging>jar</packaging>
+    <name>Bard Framework - File Store - Database</name>
 
     <dependencies>
         <dependency>

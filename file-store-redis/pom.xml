@@ -12,6 +12,7 @@
 
     <artifactId>file-store-redis</artifactId>
     <packaging>jar</packaging>
+    <name>Bard Framework - File Store - Redis</name>
 
     <dependencies>
         <dependency>
