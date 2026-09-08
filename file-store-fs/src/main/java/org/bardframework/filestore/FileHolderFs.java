@@ -1,7 +1,7 @@
 package org.bardframework.filestore;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.bardframework.filestore.file.FileInfo;
 import org.bardframework.filestore.holder.UserFileHolderAbstract;
@@ -32,7 +32,7 @@ public abstract class FileHolderFs<F extends FileInfo, U> extends UserFileHolder
         String content;
         try {
             content = objectMapper.writeValueAsString(data);
-        } catch (JsonProcessingException e) {
+        } catch (JacksonException e) {
             throw new IllegalStateException("error serializing file content to json string: " + data, e);
         }
         Path filePath = this.getFilePath(key, user);
@@ -54,7 +54,7 @@ public abstract class FileHolderFs<F extends FileInfo, U> extends UserFileHolder
         }
         try {
             return objectMapper.readValue(content, this.getFileInfoClass());
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw new IllegalStateException("error deserializing file content to : " + this.getFileInfoClass(), e);
         }
     }
