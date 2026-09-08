@@ -43,15 +43,17 @@ public abstract class FileHolderInMemory<U> extends UserFileHolderAbstract<FileI
         return dataHolder.get(user).get(key);
     }
 
+    /**
+     * مطابق قرارداد {@link org.bardframework.filestore.holder.UserFileHolder#remove(String, Object)}،
+     * نبودن فایل خطا نیست؛ در این حالت false برگردانده می‌شود (مانند پیاده‌سازی‌های فایل‌سیستمی و ردیس).
+     */
     @Override
     public boolean onRemove(String key, U user) {
-        if (!dataHolder.containsKey(user)) {
-            throw new IllegalStateException("user: " + user + " not found.");
+        Map<String, FileInfo> userFiles = dataHolder.get(user);
+        if (null == userFiles) {
+            return false;
         }
-        if (!dataHolder.get(user).containsKey(key)) {
-            throw new IllegalStateException("file with id: " + key + " for user: " + user + " not found.");
-        }
-        return null != dataHolder.get(user).remove(key);
+        return null != userFiles.remove(key);
     }
 
     @Scheduled(cron = "${fileHolder.inMemory.cleaner.cron:0 */1 * * * *}")
