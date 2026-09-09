@@ -16,6 +16,31 @@
     <packaging>pom</packaging>
     <name>Bard Framework - File Store</name>
 
+    <scm>
+        <connection>scm:git:git://github.com/bardframework/bard-file-store.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:bardframework/bard-file-store.git</developerConnection>
+        <url>https://github.com/bardframework/bard-file-store/tree/master</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Vahid Zafari</name>
+            <email>va.zafari@gmail.com</email>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <url>https://github.com/bardframework/bard-file-store</url>
+
+    <description>Short-lived, per-user file storage that holds an upload between the moment it is uploaded and the moment the form referencing it is submitted.</description>
+
     <modules>
         <module>file-store-api</module>
         <module>file-store-db</module>
