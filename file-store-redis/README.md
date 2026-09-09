@@ -1,7 +1,7 @@
 file-store-redis
 ================
 
-[![Maven Central](https://img.shields.io/badge/maven--central-5.3.3-blue.svg)](https://repo1.maven.org/maven2/org/bardframework/filestore/file-store-redis/)
+[![Maven Central](https://img.shields.io/badge/maven--central-6.1.3-blue.svg)](https://repo1.maven.org/maven2/org/bardframework/filestore/file-store-redis/)
 [![License](http://img.shields.io/:license-apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 Redis storage with a per-entry TTL. Shared across nodes, expiring without a cleanup job — the usual production choice.
@@ -12,7 +12,7 @@ Part of [**Bard File Store**](../README.md) · [Bard Framework](https://github.c
 <dependency>
     <groupId>org.bardframework.filestore</groupId>
     <artifactId>file-store-redis</artifactId>
-    <version>5.3.3</version>
+    <version>6.1.3</version>
 </dependency>
 ```
 

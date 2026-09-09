@@ -1,7 +1,7 @@
 Bard File Store
 ===============
 
-[![Maven Central](https://img.shields.io/badge/maven--central-5.3.3-blue.svg)](https://repo1.maven.org/maven2/org/bardframework/filestore/)
+[![Maven Central](https://img.shields.io/badge/maven--central-6.1.3-blue.svg)](https://repo1.maven.org/maven2/org/bardframework/filestore/)
 [![License](http://img.shields.io/:license-apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 Short-lived, per-user file storage: hold an uploaded file from the moment it is uploaded until the
@@ -12,7 +12,7 @@ immediately, and only later does the user press *Save* — or abandon the page e
 to hold those bytes in between, key them to the uploading user, and let them expire. That is all this
 library does.
 
-`groupId` `org.bardframework.filestore`, version **5.3.3** (managed by [`bard-bom`](https://github.com/bardframework/bard-bom)).
+`groupId` `org.bardframework.filestore`, version **6.1.3** (managed by [`bard-bom`](https://github.com/bardframework/bard-bom)).
 
 ## Artifacts
 
