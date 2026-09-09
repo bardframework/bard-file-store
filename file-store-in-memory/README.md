@@ -12,7 +12,7 @@ Part of [**Bard File Store**](../README.md) · [Bard Framework](https://github.c
 <dependency>
     <groupId>org.bardframework.filestore</groupId>
     <artifactId>file-store-in-memory</artifactId>
-    <version>6.1.3</version>
+    <version>5.6.3</version>
 </dependency>
 ```
 
