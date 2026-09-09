@@ -1,7 +1,7 @@
 Bard File Store
 ===============
 
-[![Maven Central](https://img.shields.io/badge/maven--central-6.1.3-blue.svg)](https://repo1.maven.org/maven2/org/bardframework/filestore/)
+[![Maven Central](https://img.shields.io/badge/maven--central-5.6.3-blue.svg)](https://repo1.maven.org/maven2/org/bardframework/filestore/)
 [![License](http://img.shields.io/:license-apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 Short-lived, per-user file storage: hold an uploaded file from the moment it is uploaded until the

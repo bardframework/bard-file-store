@@ -1,7 +1,7 @@
 file-store-api
 ==============
 
-[![Maven Central](https://img.shields.io/badge/maven--central-6.1.3-blue.svg)](https://repo1.maven.org/maven2/org/bardframework/filestore/file-store-api/)
+[![Maven Central](https://img.shields.io/badge/maven--central-5.6.3-blue.svg)](https://repo1.maven.org/maven2/org/bardframework/filestore/file-store-api/)
 [![License](http://img.shields.io/:license-apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 The contracts and the upload validators. Every other module in this repository implements what is defined here.
